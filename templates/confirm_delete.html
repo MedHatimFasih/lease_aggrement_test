@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmer la suppression - Lease Agreement</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h2>Confirmer la suppression de la propriété</h2>
+        <p>Êtes-vous sûr de vouloir supprimer la propriété "{{ property.name }}" ?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Supprimer</button>
+            <a href="{% url 'property_detail' property.id %}">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>

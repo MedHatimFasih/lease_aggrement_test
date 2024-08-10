@@ -1,0 +1,258 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Lease Agreement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            background-color: #00205b;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links,
+        .auth-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li,
+        .auth-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links li a,
+        .auth-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover,
+        .auth-links li a:hover {
+            background-color: #0056b3;
+        }
+
+        .auth-links .nav-btn {
+            padding: 8px 20px;
+            margin-left: 20px;
+            border: none;
+            background-color: transparent;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .auth-links .nav-btn:hover {
+            background-color: #c82333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #00205b;
+            text-align: center;
+        }
+
+        .city-selection {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .city {
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            background-color: #00205b;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .city:hover {
+            transform: scale(1.05);
+        }
+
+        .city img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .city h2 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+        }
+
+        .add-property-btn {
+            padding: 8px 20px;
+            background-color: transparent;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-property-btn:hover {
+            background-color: #218838;
+        }
+
+        .about-section,
+        .faq-section {
+            background-color: #f5f5f5;
+            padding: 40px 0;
+        }
+
+        .about-section h2,
+        .faq-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #00205b;
+        }
+
+        .about-section p,
+        .faq-section p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #00205b;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.5rem;
+            color: #999;
+            margin: 0; /* Ajout pour enlever les marges par defaut */
+        }
+        
+        .onda-logo {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">
+        <a href="{% url 'home' %}" style="color: white; text-decoration: none;">Lease Agreement</a>
+    </div>
+    
+    <ul class="auth-links">
+        {% if user.is_authenticated %}
+            <li><button class="add-property-btn" onclick="location.href='{% url 'add_property' %}'">Add Property</button></li>
+            <li><a href="{% url 'profile' %}" class="btn">Profile</a></li>
+            <li>
+                <form action="{% url 'logout' %}" method="post" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-btn">Logout</button>
+                </form>
+            </li>
+        {% else %}
+            <li><a href="{% url 'login' %}" class="btn">Login</a></li>
+            <li><a href="{% url 'signup' %}" class="btn">Sign Up</a></li>
+        {% endif %}
+        <li><a href="{% url 'about' %}" class="btn">À propos</a></li>
+        <li><a href="{% url 'faq' %}" class="btn">FAQ</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <header>
+        <h1>Bienvenue sur Lease Agreement</h1>
+        <p>Choisissez une ville pour explorer les propriétés disponibles</p>
+    </header>
+    <section class="city-selection">
+        <div class="city">
+            <a href="{% url 'city_properties' 'fes' %}">
+                <img src="{% static 'images/fes.jpg' %}" alt="Fes">
+                <h2>Fes</h2>
+            </a>
+        </div>
+        <div class="city">
+            <a href="{% url 'city_properties' 'marrakech' %}">
+                <img src="{% static 'images/marrakech.jpg' %}" alt="Marrakech">
+                <h2>Marrakech</h2>
+            </a>
+        </div>
+        <div class="city">
+            <a href="{% url 'city_properties' 'casablanca' %}">
+                <img src="{% static 'images/casablanca.jpg' %}" alt="Casablanca">
+                <h2>Casablanca</h2>
+            </a>
+        </div>
+        <div class="city">
+            <a href="{% url 'city_properties' 'agadir' %}">
+                <img src="{% static 'images/agadir.jpg' %}" alt="Agadir">
+                <h2>Agadir</h2>
+            </a>
+        </div>
+        <div class="city">
+            <a href="{% url 'city_properties' 'rabat' %}">
+                <img src="{% static 'images/rabat.jpg' %}" alt="Rabat">
+                <h2>Rabat</h2>
+            </a>
+        </div>
+    </section>
+</div>
+
+<div class="about-section">
+    <div class="container">
+        <h2></h2>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <img src="{% static 'images/onda_logo.png' %}" alt="ONDA Logo" class="onda-logo">
+        <p>© 2024 Lease Agreement. Tous droits réservés. | Conçu par ONDA</p>
+    </div>
+</footer>
+
+</body>
+</html>

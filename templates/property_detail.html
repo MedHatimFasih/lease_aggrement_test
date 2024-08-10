@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Logement - Lease Agreement</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Ajoute ici le style spécifique si nécessaire */
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h2>{{ property.title }}</h2>
+        {% if property.image %}
+            <img src="{{ property.image.url }}" alt="Image de {{ property.title }}">
+        {% endif %}
+        <p><strong>Ville :</strong> {{ property.city }}</p>
+        <p><strong>Adresse :</strong> {{ property.address }}</p>
+        <p><strong>Prix :</strong> {{ property.price }} MAD</p>
+        <p><strong>Chambres :</strong> {{ property.bedrooms }}</p>
+        <p><strong>Salles de bain :</strong> {{ property.bathrooms }}</p>
+        <p><strong>Description :</strong> {{ property.description }}</p>
+
+        <!-- Informations du propriétaire -->
+        <h3>Informations du Propriétaire</h3>
+        <p><strong>Nom :</strong> {{ property.owner.first_name }} {{ property.owner.last_name }}</p>
+        <p><strong>Email :</strong> {{ property.owner.email }}</p>
+        <p><strong>Téléphone :</strong> {% if property.owner.profile.phone_number %}{{ property.owner.profile.phone_number }}{% else %}Non défini{% endif %}</p>
+
+        <!-- Formulaire de réservation -->
+        <a href="{% url 'reserve_property' property.id %}" class="btn">Réserver</a>
+    </div>
+</body>
+</html>

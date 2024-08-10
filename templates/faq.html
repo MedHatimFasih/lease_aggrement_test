@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Lease Agreement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #00205b;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #00205b;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 10px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #0056b3;
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .faq-section h2 {
+            color: #00205b;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .faq-section .question {
+            margin-bottom: 20px;
+        }
+
+        .faq-section .question h3 {
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        .faq-section .answer {
+            font-size: 1.2rem;
+            color: #777;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">
+        <a href="{% url 'home' %}">
+            <!-- Insérer ici votre logo ou texte pour le logo -->
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Accueil</a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
+        <li><a href="{% url 'about' %}">À propos</a></li>
+    </ul>
+</div>
+
+<div class="faq-section">
+    <div class="container">
+        <h2>FAQ - Lease Agreement</h2>
+        <div class="question">
+            <h3>Qu'est-ce que Lease Agreement ?</h3>
+            <p>Lease Agreement est une plateforme où vous pouvez louer des maisons ou mettre vos propriétés en location pour des séjours à court terme.</p>
+        </div>
+        <div class="question">
+            <h3>Comment puis-je mettre ma propriété en location sur Lease Agreement ?</h3>
+            <p>Pour mettre votre propriété en location, vous devez créer un compte, vous connecter, puis utiliser le bouton 'Ajouter une propriété' dans votre espace personnel.</p>
+        </div>
+        <div class="question">
+            <h3>Est-ce que Lease Agreement est disponible dans toutes les villes du Maroc ?</h3>
+            <p>Oui, Lease Agreement vise à offrir des options de location dans les grandes villes du Maroc, y compris Fès, Marrakech, Casablanca, Agadir et Rabat.</p>
+        </div>
+        <div class="question">
+            <h3>Comment puis-je contacter le support de Lease Agreement ?</h3>
+            <p>Vous pouvez contacter notre équipe de support par e-mail à support@leaseagreement.com ou via notre hotline client au +0524359536.</p>
+        </div>
+        <div class="question">
+            <h3>Est-ce sûr d'utiliser Lease Agreement ?</h3>
+            <p>Lease Agreement prend la sécurité très au sérieux. Nous utilisons le chiffrement et des méthodes de paiement sécurisées pour protéger vos informations et transactions.</p>
+        </div>
+        <div class="question">
+            <h3>Puis-je annuler ma réservation ?</h3>
+            <p>Oui, vous pouvez annuler votre réservation à travers votre tableau de bord personnel. Veuillez consulter notre politique d'annulation pour plus de détails.</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <p>© 2024 Lease Agreement. Tous droits réservés. | Conçu par ONDA</p>
+    </div>
+</footer>
+</body>
+</html>

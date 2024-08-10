@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation - Lease Agreement</title>
+    <style>
+        /* Styles de base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Bleu très clair */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003b71; /* Bleu ONDA */
+            color: #fff;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 25px;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .navbar .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            margin-top: 0;
+            color: #003b71; /* Bleu ONDA */
+            font-size: 2em;
+            border-bottom: 2px solid #003b71;
+            padding-bottom: 10px;
+        }
+
+        .reservation-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .reservation-form label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .reservation-form input,
+        .reservation-form select,
+        .reservation-form button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .reservation-form button {
+            background-color: #003b71; /* Bleu ONDA */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .reservation-form button:hover {
+            background-color: #002c54; /* Bleu plus foncé ONDA */
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 0.9em;
+        }
+
+        .reservation-form input::placeholder {
+            color: #aaa;
+        }
+
+        .reservation-form input:focus,
+        .reservation-form select:focus {
+            border-color: #003b71; /* Bleu ONDA */
+            outline: none;
+        }
+
+        .document-fields {
+            display: none; /* Cacher les champs par défaut */
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .nav-links {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+
+            .navbar .nav-links li {
+                margin: 5px 0;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">Lease Agreement</div>
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Accueil</a></li>
+        <li><a href="{% url 'about' %}">À Propos</a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2>Réservation pour {{ property.title }}</h2>
+    <form method="post" class="reservation-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <label for="id_document_type">Type de document :</label>
+        <select id="id_document_type" name="id_document_type" class="document-type-select">
+            <option value="">Choisir un type de document</option>
+            <option value="passport">Passeport</option>
+            <option value="id_card">Carte Nationale</option>
+        </select>
+
+        <div class="document-fields">
+            <label for="id_document_number">Numéro de document :</label>
+            <input type="text" id="id_document_number" name="id_document_number" placeholder="Entrez le numéro de document">
+        </div>
+
+        <!-- Conserver les autres champs du formulaire -->
+        {{ form.as_p }}
+
+        <button type="submit">Réserver</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const documentTypeSelect = document.getElementById('id_document_type');
+        const documentFields = document.querySelector('.document-fields');
+
+        documentTypeSelect.addEventListener('change', function() {
+            if (this.value) {
+                documentFields.style.display = 'block';
+            } else {
+                documentFields.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

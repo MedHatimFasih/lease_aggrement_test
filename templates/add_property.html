@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une propriété - Lease Agreement</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* CSS pour le corps de la page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Fond gris foncé */
+            color: #eee; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Conteneur principal centré */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        /* Titre de la page */
+        h2 {
+            font-size: 2rem;
+            color: #003b71; 
+        }
+
+        /* Formulaire d'ajout de propriété */
+        form {
+            background-color: #fff; /* Fond gris légèrement plus clair */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre plus prononcée */
+            margin-top: 20px;
+        }
+
+        /* Étiquettes du formulaire */
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #003b71; 
+            text-align: left;
+        }
+
+        /* Champs de saisie du formulaire */
+        form input[type="text"],
+        form input[type="number"],
+        form textarea {
+            width: calc(100% - 24px); /* Largeur moins les paddings */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd; /* Bordure gris foncé */
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f9f9f9; /* Fond gris plus foncé */
+            color: #333; /* Texte blanc */
+            transition: border-color 0.3s ease;
+        }
+
+        /* Effet de survol et focus sur les champs */
+        form input[type="text"]:focus,
+        form input[type="number"]:focus,
+        form textarea:focus {
+            border-color:  #003b71; 
+            outline: none
+        }
+
+        /* Bouton de soumission du formulaire */
+        form button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color:  #003b71; /* Bleu */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Effet de survol sur le bouton */
+        form button:hover {
+            background-color: #002c54; /* Bleu plus foncé */
+        }
+    </style>
+</head>
+<body>
+
+{% include 'navbar.html' %}
+
+<div class="container">
+    <h2>Ajouter une propriété</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ajouter</button>
+    </form>
+</div>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            alert('Formulaire soumis avec succès !'); 
+            form.reset(); 
+        });
+    });
+</script>
+
+</body>
+</html>

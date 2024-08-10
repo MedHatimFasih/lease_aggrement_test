@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .signup-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-field {
+            width: calc(100% - 20px);
+            padding: 10px;
+            padding-top: 20px; /* Espace pour l'étiquette */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .input-field:focus {
+            border-color: #007bff;
+        }
+
+        .input-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 16px;
+            color: #aaa;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus ~ .input-label,
+        .input-field:not(:placeholder-shown) ~ .input-label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            color: #007bff;
+        }
+
+        .signup-form button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .signup-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Inscription</h2>
+        <form class="signup-form" method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="error-message">{{ form.non_field_errors }}</div>
+            {% endif %}
+            <div class="input-container">
+                <input type="text" id="id_first_name" name="first_name" class="input-field" required placeholder=" ">
+                <label for="id_first_name" class="input-label">Prénom</label>
+                {% if form.first_name.errors %}
+                    <div class="error-message">{{ form.first_name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="input-container">
+                <input type="text" id="id_last_name" name="last_name" class="input-field" required placeholder=" ">
+                <label for="id_last_name" class="input-label">Nom</label>
+                {% if form.last_name.errors %}
+                    <div class="error-message">{{ form.last_name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="input-container">
+                <input type="email" id="id_email" name="email" class="input-field" required placeholder=" ">
+                <label for="id_email" class="input-label">Email</label>
+                {% if form.email.errors %}
+                    <div class="error-message">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="input-container">
+                <input type="text" id="id_phone_number" name="phone_number" class="input-field" required placeholder=" ">
+                <label for="id_phone_number" class="input-label">Numéro de téléphone</label>
+                {% if form.phone_number.errors %}
+                    <div class="error-message">{{ form.phone_number.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="input-container">
+                <input type="text" id="id_username" name="username" class="input-field" required placeholder=" ">
+                <label for="id_username" class="input-label">Nom d'utilisateur</label>
+                {% if form.username.errors %}
+                    <div class="error-message">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="input-container">
+                <input type="password" id="id_password1" name="password1" class="input-field" required placeholder=" ">
+                <label for="id_password1" class="input-label">Mot de passe</label>
+                {% if form.password1.errors %}
+                    <div class="error-message">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="input-container">
+                <input type="password" id="id_password2" name="password2" class="input-field" required placeholder=" ">
+                <label for="id_password2" class="input-label">Confirmation du mot de passe</label>
+                {% if form.password2.errors %}
+                    <div class="error-message">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.signup-form');
+
+            form.addEventListener('submit', function(event) {
+                const password1 = form.querySelector('#id_password1').value;
+                const password2 = form.querySelector('#id_password2').value;
+
+                if (password1 !== password2) {
+                    event.preventDefault(); // Empêche l'envoi du formulaire
+                    alert('Les mots de passe ne correspondent pas.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

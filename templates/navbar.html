@@ -1,0 +1,22 @@
+<!-- navbar.html -->
+<nav class="navbar">
+    <div class="container">
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Accueil</a></li>
+        </ul>
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+                <div class="user-actions">
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                    <form class="logout-form" action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-btn">Déconnexion</button>
+                    </form>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn">Login</a>
+                <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

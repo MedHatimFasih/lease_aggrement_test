@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Lease Agreement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #00205b;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: #00205b; /* Couleur de fond pour la navbar - bleu ONDA */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end; /* Alignement à droite */
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 10px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #0056b3; /* Couleur de fond au survol - bleu foncé ONDA */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">acueil</a></li>
+            
+            <li><a href="{% url 'faq' %}">FAQ</a></li>
+            <li><a href="{% url 'about' %}">À propos</a></li>
+            <!-- Ajoutez vos autres liens de navigation ici si nécessaire -->
+        </ul>
+    </div>
+
+    <div class="container">
+        <img src="{% static 'images/onda_logo2.png' %}" alt="ONDA Logo" class="onda-logo">
+        <h1>À propos de nous</h1>
+        <p>Lease Agreement est une plateforme dédiée à la location de logements à court terme au Maroc. Notre objectif est de connecter les propriétaires de biens immobiliers avec des locataires potentiels dans les principales villes marocaines comme Fès, Casablanca, Marrakech, Agadir et Rabat</p>
+        <p>Nous collaborons étroitement avec l'Office National Des Aéroports (ONDA) pour offrir une expérience intégrée aux voyageurs. Notre partenariat avec ONDA garantit des options de logement pratiques et sécurisées pour les voyageurs à travers le Maroc.</p>
+    </div>
+</body>
+</html>

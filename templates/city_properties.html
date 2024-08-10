@@ -1,0 +1,33 @@
+{% load static %}
+{% include 'navbar.html' %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Propriétés à {{ city }} - Lease Agreement</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Propriétés à {{ city }}</h2>
+
+        <div class="property-list">
+            {% if properties %}
+                <ul>
+                    {% for property in properties %}
+                        <li>
+                            <h3>{{ property.title }}</h3>
+                            <p><strong>Adresse :</strong> {{ property.address }}</p>
+                            <p><strong>Prix :</strong> {{ property.price }} MAD</p>
+                            <!-- Ajoutez d'autres détails de la propriété ici -->
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucune propriété disponible à {{ city }} pour le moment.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
